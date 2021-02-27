@@ -5,29 +5,43 @@ import Cards from "./components/Cards/Cards";
 const App = () => {
   const [cards, setCards] = useState([
     {
-      id: 1,
+      id: 0,
       name: "Alene Hoppe",
       title: "Direct Usability Designer",
     },
     {
-      id: 2,
+      id: 1,
       name: "Alexander Kshlerin",
       title: "Corporate Group Producer",
     },
     {
-      id: 3,
+      id: 2,
       name: "Cristian Stroman",
       title: "Dynamic Metrics Liaison",
     },
     {
-      id: 4,
+      id: 3,
       name: "Solon Bartell",
       title: "Sortware Developer",
     },
   ]);
+  const [showCards, setShowCards] = useState(true);
+  const toggleCardsHandler = () => setShowCards(!showCards);
+  const deleteCardHandler = (cardIndex) => {
+    const cardsCopy = [...cards];
+    console.log(cardIndex);
+    cardsCopy.splice(
+      cardsCopy.findIndex((c) => c.id === cardIndex),
+      1
+    );
+    setCards(cardsCopy);
+  };
   return (
     <div className="App">
-      <Cards cards={cards} />
+      <button onClick={toggleCardsHandler}>{`${
+        showCards ? "Hide" : "Show"
+      } cards`}</button>
+      {showCards && <Cards cards={cards} deleted={deleteCardHandler} />}
     </div>
   );
 };
