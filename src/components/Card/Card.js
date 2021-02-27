@@ -6,6 +6,7 @@ const Card = ({
   name,
   title,
   clicked,
+  changedName,
 }) => (
   <div className="card">
     <img src={img} alt="Avatar" />
@@ -14,6 +15,7 @@ const Card = ({
         <b>{name}</b>
       </h4>
       <p>{title}</p>
+      <input onChange={changedName} value={name} />
       <button className="delete" onClick={clicked}>
         Delete Card
       </button>

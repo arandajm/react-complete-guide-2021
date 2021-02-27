@@ -5,22 +5,22 @@ import Cards from "./components/Cards/Cards";
 const App = () => {
   const [cards, setCards] = useState([
     {
-      id: 0,
+      id: 1,
       name: "Alene Hoppe",
       title: "Direct Usability Designer",
     },
     {
-      id: 1,
+      id: 3,
       name: "Alexander Kshlerin",
       title: "Corporate Group Producer",
     },
     {
-      id: 2,
+      id: 6,
       name: "Cristian Stroman",
       title: "Dynamic Metrics Liaison",
     },
     {
-      id: 3,
+      id: 10,
       name: "Solon Bartell",
       title: "Sortware Developer",
     },
@@ -36,12 +36,25 @@ const App = () => {
     );
     setCards(cardsCopy);
   };
+  const changeNameHandler = (ev, index) => {
+    const cardIndex = cards.findIndex((c) => c.id === index);
+    console.log(cardIndex);
+    const cardsCopy = [...cards];
+    cardsCopy[cardIndex].name = ev.target.value;
+    setCards(cardsCopy);
+  };
   return (
     <div className="App">
       <button onClick={toggleCardsHandler}>{`${
         showCards ? "Hide" : "Show"
       } cards`}</button>
-      {showCards && <Cards cards={cards} deleted={deleteCardHandler} />}
+      {showCards && (
+        <Cards
+          cards={cards}
+          deleted={deleteCardHandler}
+          changed={changeNameHandler}
+        />
+      )}
     </div>
   );
 };
